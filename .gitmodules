@@ -1,0 +1,6 @@
+[submodule "corpora/priapeia"]
+	path = corpora/priapeia
+	url = https://github.com/lascivaroma/priapeia/
+[submodule "corpora/additional-texts"]
+	path = corpora/additional-texts
+	url = https://github.com/lascivaroma/additional-texts
