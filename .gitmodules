@@ -4,3 +4,6 @@
 [submodule "corpora/additional-texts"]
 	path = corpora/additional-texts
 	url = https://github.com/lascivaroma/additional-texts
+[submodule "corpora/cdli-cts"]
+	path = corpora/cdli-cts
+	url = https://github.com/cdli-gh/cdli-cts
