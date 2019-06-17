@@ -44,19 +44,45 @@ def homepage():
   <head>
     <meta charset=utf-8>
     <title>CDLI CTS webservice</title>
+    <style>
+      body {{
+        width: 100%;
+        margin: 0 auto;
+        font-size: 14px;
+        line-height: 20px;
+      }}
+      header {{
+        background-color: lightgrey;
+        padding: 20px;
+      }}
+      nav {{
+        margin: 20px;
+      }}
+      h1, h2, h3 {{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1;
+      }}
+      p {{
+        font-family: "Palatino", "Palatino Linotype", "Georgia", "Serif";
+      }}
+    </style>
   </head>
   <body>
+    <header>
     <h1>CDLI Text Services</h1>
-    <p>This server provides texts from the
+    <p>This server provides programmatic access to texts from the
        <a href=https://cdli.ucla.edu>Cuneiform Digital Library Initiative</a>.
     </p>
-    <p>From here you can
+    </header>
+    <nav>
+    <p>From here you can:
     <ul>
       <li><a href={nemo.prefix}/>Browse the collection</a> with Nemo.</li>
       <li><a href={nautilus.prefix}/cts?request=GetCapabilities>Query
           the CTS api</a> with Nautilus.</li>
     </ul>
     </p>
+    <nav>
   </body>
 </html>'''
 
