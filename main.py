@@ -18,7 +18,7 @@ print('app: resolver given', corpora)
 resolver = NautilusCTSResolver(corpora)
 resolver.parse()
 
-nautilus_api = FlaskNautilus(
+nautilus = FlaskNautilus(
         prefix='/api',
         app=app,
         resolver=resolver
@@ -39,7 +39,7 @@ def homepage():
     We're mainly here to serve the nemo browser and api endoints,
     but provide a simple landing page in case we're serving the
     whole domain.'''
-    return '''<!doctype html>
+    return f'''<!DOCTYPE html>
 <html>
   <head>
     <meta charset=utf-8>
@@ -47,14 +47,14 @@ def homepage():
   </head>
   <body>
     <h1>CDLI Text Services</h1>
-    <p>This server provide texts from the
+    <p>This server provides texts from the
        <a href=https://cdli.ucla.edu>Cuneiform Digital Library Initiative</a>.
     </p>
     <p>From here you can
     <ul>
-      <li><a href=/nemo/>Browse the collection</a> with Nemo.</li>
-      <li><a href=/api/cts?request=GetCapabilities>Query the CTS api</a>
-          with Nautilus.</li>
+      <li><a href={nemo.prefix}/>Browse the collection</a> with Nemo.</li>
+      <li><a href={nautilus.prefix}/cts?request=GetCapabilities>Query
+          the CTS api</a> with Nautilus.</li>
     </ul>
     </p>
   </body>
