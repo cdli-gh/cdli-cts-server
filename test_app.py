@@ -1,4 +1,5 @@
 import pytest
+import xml.dom.minidom
 
 import main
 
@@ -18,7 +19,6 @@ def test_index(client):
 def test_nemo(client):
     '''Verify nemo pages.'''
     nemo = main.nemo.prefix
-    print('Nemo prefix is', nemo)
     rv = client.get(nemo, follow_redirects=True)
     text = rv.data.decode()
     assert 'Nemo' in text
@@ -28,3 +28,32 @@ def test_nemo(client):
     page = 'default-collection-atf2tei-test-examples'
     text = client.get(f'{nemo}/collections/{urn}/{page}').data.decode()
     assert 'belsunu' in text
+
+
+def cts_query(request, urn=None):
+    '''Generate a nautilus query url for the given parameters.'''
+    nautilus = main.nautilus.prefix
+    url = f'{nautilus}/cts?request={request}'
+    if urn:
+        url += f'&urn={urn}'
+    return url
+
+
+def test_nautilus(client):
+    '''Verify nautilus api service.'''
+    rv = client.get(cts_query('GetCapabilities'))
+    dom = xml.dom.minidom.parseString(rv.data)
+    assert dom.documentElement.tagName == 'GetCapabilities'
+    textgroups = dom.getElementsByTagName('textgroup')
+    assert len(textgroups)
+    urns = [element.getAttribute('urn') for element in textgroups]
+    assert 'urn:cts:cdli:test' in urns
+
+    work = dom.getElementsByTagName('work')
+    urn = work[0].getAttribute('urn')
+    rv = client.get(cts_query('GetPassage', urn))
+    passage = xml.dom.minidom.parseString(rv.data)
+    assert passage.documentElement.tagName == 'GetPassage'
+    texts = passage.getElementsByTagName('text')
+    assert len(texts) == 1
+    assert texts[0].getAttribute('n').startswith(urn)
