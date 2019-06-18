@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html lang=en>
   <head>
     <meta charset=utf-8>
-    <meta name="viewport"
+    <meta name=viewport
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>CDLI CTS webservice</title>
     <style>
@@ -10,7 +10,7 @@
         width: 100%;
         margin: 0 auto;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 1.4285;
       }
       header {
         background-color: lightgrey;
@@ -21,17 +21,19 @@
       }
       h1, h2, h3 {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        line-height: 1;
+        margin-bottom: 0.5rem;
       }
       p {
-        font-family: "Palatino", "Palatino Linotype", "Georgia", "Serif";
+        font-family: "Palatino", "Palatino Linotype", "Georgia", serif;
+        margin-top: 0;
       }
     </style>
   </head>
   <body>
-    <header>
+    <div class=container-fluid>
+    <header class=jumbotron>
     <h1>CDLI Text Services</h1>
-    <p>This server provides programmatic access to texts from the
+    <p class=lead>This server provides programmatic access to texts from the
        <a href=https://cdli.ucla.edu>Cuneiform Digital Library Initiative</a>.
     </p>
     </header>
@@ -44,5 +46,6 @@
     </ul>
     </p>
     </nav>
+    </div>
   </body>
 </html>
