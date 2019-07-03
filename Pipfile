@@ -6,7 +6,6 @@ verify_ssl = true
 [packages]
 flask-nemo = "*"
 capitains-nautilus = "*"
-requests = "*"
 
 [dev-packages]
 pycodestyle = "*"
