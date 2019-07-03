@@ -5,6 +5,7 @@ Following https://github.com/Capitains/tutorial-nemo
 '''
 
 import os
+import requests
 
 import flask
 from flask_nemo import Nemo
@@ -41,7 +42,8 @@ def home():
     whole domain.'''
     return flask.render_template('index.html',
                                  nemo=nemo.prefix,
-                                 nautilus=nautilus.prefix)
+                                 nautilus=nautilus.prefix,
+                                 requests=requests)
 
 
 if __name__ == '__main__':
