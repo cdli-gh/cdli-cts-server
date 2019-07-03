@@ -43,9 +43,8 @@
       <li><a href={{nemo}}/>Browse the collection</a> with Nemo.</li>
       <li><a href={{nautilus}}/cts?request=GetCapabilities>Query
           the CTS api</a> with Nautilus.</li>
-      {% if requests.head(request.url + 'scaife/',
-              allow_redirects=True).status_code == requests.codes.ok %}
-      <li><a href=/scaife/>Read tablets</a> with Scaife.</li>
+      {% if scaife %}
+      <li><a href={{scaife}}>Read tablets</a> with Scaife.</li>
       {% endif %}
     </ul>
     </p>

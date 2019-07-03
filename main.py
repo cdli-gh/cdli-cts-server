@@ -5,7 +5,6 @@ Following https://github.com/Capitains/tutorial-nemo
 '''
 
 import os
-import requests
 
 import flask
 from flask_nemo import Nemo
@@ -13,6 +12,10 @@ from capitains_nautilus.cts.resolver import NautilusCTSResolver
 from capitains_nautilus.flask_ext import FlaskNautilus
 
 app = flask.Flask("CTS webserver demo (nemo)")
+
+LOCAL_CONFIG = 'config.py'
+if os.path.exists(LOCAL_CONFIG):
+    app.config.from_pyfile(LOCAL_CONFIG)
 
 corpora = [entry.path for entry in os.scandir('corpora') if entry.is_dir()]
 print('app: resolver given', corpora)
@@ -43,7 +46,7 @@ def home():
     return flask.render_template('index.html',
                                  nemo=nemo.prefix,
                                  nautilus=nautilus.prefix,
-                                 requests=requests)
+                                 scaife=app.config.get('SCAIFE_URL'))
 
 
 if __name__ == '__main__':
