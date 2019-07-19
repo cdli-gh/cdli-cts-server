@@ -49,11 +49,17 @@ def test_nautilus(client):
     urns = [element.getAttribute('urn') for element in textgroups]
     assert 'urn:cts:cdli:test' in urns
 
-    work = dom.getElementsByTagName('work')
-    urn = work[0].getAttribute('urn')
+    works = dom.getElementsByTagName('work')
+    urn = works[0].getAttribute('urn')
     rv = client.get(cts_query('GetPassage', urn))
     passage = xml.dom.minidom.parseString(rv.data)
     assert passage.documentElement.tagName == 'GetPassage'
     texts = passage.getElementsByTagName('text')
     assert len(texts) == 1
-    assert texts[0].getAttribute('n').startswith(urn)
+    bodies = texts[0].getElementsByTagName('body')
+    assert len(bodies) == 1
+    divs = bodies[0].getElementsByTagName('div')
+    assert len(divs) > 0
+    edition = divs[0]
+    assert edition.getAttribute('type') == 'edition'
+    assert edition.getAttribute('n').startswith(urn)
