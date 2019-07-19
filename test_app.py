@@ -25,7 +25,7 @@ def test_nemo(client):
     assert 'Text Collections' in text
 
     urn = 'urn:cts:cdli:test'
-    page = 'default-collection-atf2cts-test-examples'
+    page = 'default-collection-test-samples-converted-by-atf2cts'
     text = client.get(f'{nemo}/collections/{urn}/{page}').data.decode()
     assert 'CDLI Literary' in text
 
