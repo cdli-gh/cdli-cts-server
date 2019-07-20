@@ -24,7 +24,7 @@ def test_nemo(client):
     assert 'Nemo' in text
     assert 'Text Collections' in text
 
-    urn = 'urn:cts:cdli:test'
+    urn = 'urn:cts:cdli:P497322'
     page = 'default-collection-test-samples-converted-by-atf2cts'
     text = client.get(f'{nemo}/collections/{urn}/{page}').data.decode()
     assert 'CDLI Literary' in text
@@ -47,7 +47,7 @@ def test_nautilus(client):
     textgroups = dom.getElementsByTagName('textgroup')
     assert len(textgroups)
     urns = [element.getAttribute('urn') for element in textgroups]
-    assert 'urn:cts:cdli:test' in urns
+    assert 'urn:cts:cdli:P464358' in urns
 
     works = dom.getElementsByTagName('work')
     urn = works[0].getAttribute('urn')
